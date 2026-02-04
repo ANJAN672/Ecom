@@ -1,0 +1,34 @@
+┌─────────────────────────────────────────────────────────────────┐
+│                         DATABASE SCHEMA                          │
+├──────────────┬──────────────┬──────────────┬───────────────────┤
+│    users     │  categories  │  addresses   │     products      │
+├──────────────┼──────────────┼──────────────┼───────────────────┤
+│ id (UUID)    │ id (UUID)    │ id (UUID)    │ id (UUID)         │
+│ firstName    │ name         │ fullName     │ name              │
+│ lastName     │ description  │ phoneNumber  │ description       │
+│ email        │ imageUrl     │ addressLine1 │ price             │
+│ password     │ isActive     │ addressLine2 │ stockQuantity     │
+│ role         │ createdAt    │ city         │ isInStock         │
+│ isActive     │ updatedAt    │ state        │ imageUrl          │
+│ createdAt    │              │ pinCode      │ sellerId (FK)     │
+│ updatedAt    │              │ landmark     │ categoryId (FK)   │
+│              │              │ type         │ createdAt         │
+│              │              │ isDefault    │ updatedAt         │
+│              │              │ userId (FK)  │                   │
+├──────────────┴──────────────┴──────────────┴───────────────────┤
+│                                                                  │
+│    cart_items          │    orders           │    order_items    │
+├────────────────────────┼─────────────────────┼───────────────────┤
+│ id (UUID)              │ id (UUID)           │ id (UUID)         │
+│ quantity               │ orderNumber         │ quantity          │
+│ userId (FK)            │ status              │ priceAtPurchase   │
+│ productId (FK)         │ paymentMethod       │ subtotal          │
+│ createdAt              │ paymentStatus       │ productName       │
+│ updatedAt              │ totalAmount         │ productImage      │
+│                        │ shippingName        │ orderId (FK)      │
+│                        │ shippingPhone       │ productId (FK)    │
+│                        │ shippingAddress...  │ createdAt         │
+│                        │ userId (FK)         │                   │
+│                        │ createdAt           │                   │
+│                        │ updatedAt           │                   │
+└────────────────────────┴─────────────────────┴───────────────────┘

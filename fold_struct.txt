@@ -1,0 +1,14 @@
+basic_ecom/
+├── backend/          # NestJS API
+│   ├── src/
+│   │   ├── modules/  # Feature modules (products, users, orders, etc.)
+│   │   ├── common/   # Shared utilities, guards, decorators
+│   │   └── config/   # Configuration files
+│   └── ...
+│
+├── frontend/         # Next.js App
+│   ├── app/          # Pages and routes
+│   ├── components/   # Reusable UI components
+│   └── ...
+│
+└── README.md

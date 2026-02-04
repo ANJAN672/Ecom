@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  /* High-End Neutral Palette */
+  --background: #ffffff;
+  --foreground: #09090b;
+  /* Zinc 950 */
+
+  --primary: #18181b;
+  /* Zinc 900 - Dark Neutral */
+  --primary-foreground: #ffffff;
+
+  --secondary: #f4f4f5;
+  /* Zinc 100 */
+  --secondary-foreground: #18181b;
+
+  --muted: #71717a;
+  /* Zinc 500 */
+  --muted-foreground: #a1a1aa;
+
+  --border: #e4e4e7;
+  /* Zinc 200 */
+  --input: #e4e4e7;
+
+  --accent: #2563eb;
+  /* Professional Blue for Actions */
+  --accent-foreground: #ffffff;
+
+  --card: #ffffff;
+  --card-foreground: #09090b;
+
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+
+    --primary: #fafafa;
+    --primary-foreground: #09090b;
+
+    --secondary: #27272a;
+    --secondary-foreground: #fafafa;
+
+    --muted: #a1a1aa;
+    --muted-foreground: #52525b;
+
+    --border: #27272a;
+    --input: #27272a;
+
+    --accent: #3b82f6;
+    --accent-foreground: #fafafa;
+
+    --card: #09090b;
+    --card-foreground: #fafafa;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --radius-xl: 1rem;
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Technical Measurements & Grids */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Grid System */
+.grid-standard {
+  display: grid;
+  gap: 1.5rem;
+  /* 24px */
+}
+
+@media (min-width: 640px) {
+  .grid-standard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-standard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-standard.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Component Specs */
+.nav-height {
+  height: 64px;
+}
+
+.card-minimal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-minimal:hover {
+  border-color: var(--muted);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Inputs & Buttons */
+.input-clean {
+  height: 40px;
+  padding: 0 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--background);
+  transition: all 0.15s ease;
+}
+
+.input-clean:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.btn-clean {
+  height: 40px;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-primary-clean {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-primary-clean:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary-clean {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary-clean:hover {
+  background-color: var(--border);
+}
+
+/* Common Sense Spacing */
+.section-spacing {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
