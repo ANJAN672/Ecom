@@ -19,6 +19,7 @@ export default function CheckoutPage() {
     const [isPlacingOrder, setIsPlacingOrder] = useState(false);
     const [error, setError] = useState('');
     const [isLoadingAddresses, setIsLoadingAddresses] = useState(true);
+    const [agreedToTerms, setAgreedToTerms] = useState(false);
 
     useEffect(() => {
         if (!authLoading && !isAuthenticated) {
@@ -138,8 +139,8 @@ export default function CheckoutPage() {
                                     <label
                                         key={address.id}
                                         className={`block p-4 rounded-lg border cursor-pointer transition-all ${selectedAddressId === address.id
-                                                ? 'border-primary bg-primary/5'
-                                                : 'border-border hover:border-muted'
+                                            ? 'border-primary bg-primary/5'
+                                            : 'border-border hover:border-muted'
                                             }`}
                                     >
                                         <div className="flex items-start gap-3">
@@ -181,8 +182,8 @@ export default function CheckoutPage() {
                         <div className="space-y-3">
                             <label
                                 className={`block p-4 rounded-lg border cursor-pointer transition-all ${paymentMethod === 'cod'
-                                        ? 'border-primary bg-primary/5'
-                                        : 'border-border hover:border-muted'
+                                    ? 'border-primary bg-primary/5'
+                                    : 'border-border hover:border-muted'
                                     }`}
                             >
                                 <div className="flex items-center gap-3">
@@ -290,29 +291,51 @@ export default function CheckoutPage() {
                             </div>
                         </div>
 
-                        <button
-                            onClick={handlePlaceOrder}
-                            disabled={isPlacingOrder || !selectedAddressId}
-                            className="btn btn-primary w-full mt-6"
-                        >
-                            {isPlacingOrder ? (
-                                <>
-                                    <div className="spinner w-5 h-5 border-2" />
-                                    Placing Order...
-                                </>
-                            ) : (
-                                <>
-                                    Place Order
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        <div className="mt-8 space-y-4">
+                            <label className="flex items-start gap-3 cursor-pointer group">
+                                <div className="relative flex items-center mt-0.5">
+                                    <input
+                                        type="checkbox"
+                                        id="terms-checkbox"
+                                        checked={agreedToTerms}
+                                        onChange={(e) => setAgreedToTerms(e.target.checked)}
+                                        className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-border bg-background transition-all checked:bg-primary checked:border-primary hover:border-muted-foreground focus:ring-2 focus:ring-primary/20"
+                                    />
+                                    <svg
+                                        className="absolute h-3.5 w-3.5 text-primary-foreground opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity left-1/2 -translate-x-1/2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
-                                </>
-                            )}
-                        </button>
+                                </div>
+                                <span className="text-sm text-muted-foreground select-none group-hover:text-foreground transition-colors leading-tight">
+                                    By placing this order, you agree to our <Link href="/terms" className="text-primary hover:underline font-medium">Terms of Service</Link>.
+                                </span>
+                            </label>
 
-                        <p className="text-xs text-muted text-center mt-4">
-                            By placing this order, you agree to our Terms of Service.
-                        </p>
+                            <button
+                                onClick={handlePlaceOrder}
+                                disabled={isPlacingOrder || !selectedAddressId || !agreedToTerms}
+                                className="btn btn-primary w-full h-12 shadow-md hover:shadow-lg disabled:shadow-none transition-all"
+                            >
+                                {isPlacingOrder ? (
+                                    <>
+                                        <div className="spinner !w-4 !h-4 !border-2" />
+                                        <span>Placing Order...</span>
+                                    </>
+                                ) : (
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span>Place Order</span>
+                                    </div>
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
